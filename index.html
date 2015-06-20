@@ -1,0 +1,428 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>Slim Media Center </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+	<link rel="stylesheet" href="themes/SpeSlimRemote.css" />
+	<link rel="stylesheet" href="themes/SlimRemote.min.css" />	
+	<script type="text/javascript" 		src="scripts/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript">
+        var needRedirect = false;
+        $(document).bind("mobileinit", function(){
+            var thisPage = location.hash;
+            if (thisPage != '' && thisPage != '#home' ) {
+                needRedirect = true;
+            }
+        });
+    </script>
+	<script type="text/javascript" 		src="scripts/jquery.mobile-1.4.5.min.js"></script>	
+	<script type="text/javascript" 		src="scripts/SlimRemoteScripts.js"></script>		
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="copyright" content="InfinityCreative SlimRemote" />
+	<meta name="description" content="XBMC/KODI Remote. Works on desktops and on mobile devices, use it as an improved remote control." />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="images/SlimRemoteIcon.png" />
+	<link rel="apple-touch-icon-precomposed" href="images/SlimRemoteIcon.png" />
+
+	
+	
+</head>
+
+<body>
+
+	
+	
+	<!-- HomeScreen -->
+	<div data-role="page" id="home">
+		
+		<div data-role="panel" id="remote" data-display="overlay" data-position="right" data-theme="b" >
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Input.Back" data-remote-params="" data-role="button" data-icon="back" data-iconpos="notext">Back</a>
+					<a href="#" data-remote-action="Input.Up" data-remote-params="" data-role="button" data-icon="arrow-u" data-iconpos="notext">Up</a>
+					<a href="#" data-remote-action="input.ContextMenu" data-remote-params="" data-role="button" data-icon="gear" data-iconpos="notext">Menu</a>					
+					
+				</div>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Input.Left" data-remote-params="" data-role="button" data-icon="arrow-l" data-iconpos="notext">Left</a>
+					<a href="#" data-remote-action="Input.Select" data-remote-params="" data-role="button" data-icon="grid" data-iconpos="notext" >Okay</a>
+					<a href="#" data-remote-action="Input.Right" data-remote-params="" data-role="button" data-icon="arrow-r" data-iconpos="notext">Right</a>
+				</div>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Player.PlayPause" data-remote-params="player" data-role="button" data-icon="playpause" data-iconpos="notext">Play/Pause</a>				
+					<a href="#" data-remote-action="Input.Down" data-remote-params="" data-role="button" data-icon="arrow-d" data-iconpos="notext">Down</a>
+					<a href="#" data-remote-action="Player.Stop" data-remote-params="player" data-role="button" data-icon="stop" data-iconpos="notext">Stop</a>
+				</div>					
+				<div data-role="controlgroup" data-type="horizontal">				
+					<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeDown" data-role="button" data-icon="minus" data-iconpos="notext">-</a>	
+					<a href="#" data-remote-action="Input.ShowOSD" data-remote-params="" data-role="button" data-icon="info" data-iconpos="notext"> Show OSD</a>
+					<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeUp" data-role="button" data-icon="plus" data-iconpos="notext">+</a>				
+				</div>
+				<form class='dynamic-slider-form' ></form>				
+										
+				<a href="#ExtendedHomeRemote"	    data-role="button"  data-icon="tag"   >More Controls</a>	
+				<a href="#home" data-rel="close"	data-role="button"	data-icon="delete"   >Close panel</a>
+					
+				
+			
+				
+		</div><!-- /panel -->
+		
+		<div data-role="panel" id="ExtendedHomeRemote" data-display="overlay" data-position="right" data-theme="b" >
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="" data-remote-params="smallbackward" data-role="button" data-icon="arrow-l" data-iconpos="notext">Left</a>
+					<a href="#" data-remote-action="Input.Select" data-remote-params="" data-role="button" data-icon="grid" data-iconpos="notext" >Okay</a>
+					<a href="#" data-remote-action="" data-remote-params="smallforward" data-role="button" data-icon="arrow-r" data-iconpos="notext">Right</a>
+				</div>
+				
+				<div data-role="controlgroup" data-type="horizontal">							 
+				<input type="text" autocorrect="off" id="TextToSend" name="TextToSend" placeholder="Keyboard" class='TextToSend'  size="7" data-wrapper-class="controlgroup-textinput ui-btn">
+				<a href="#" data-remote-action="Input.SendText"  data-remote-params="TextInput" data-role="button" data-icon="check" data-iconpos="notext" >SendText</a>				
+				</div>	
+				
+				<a href="#"	    data-role="button"  data-icon="bullets"  data-remote-action="" data-remote-params="PleaseShowSubtitles" 			>Search subtitles </a>		
+				<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeDown" data-role="button" data-icon="minus"  	>Subtitle OFF</a>				
+				<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeDown" data-role="button" data-icon="minus"  	>Delay Subtitle</a>					
+				<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeUp" data-role="button" data-icon="plus"  	>Delay Subtitle</a>				
+				
+				
+				<a href="#remote" data-rel="close"	data-icon="delete"		data-role="button"					>Simple Remote</a>
+			
+		</div><!-- /panel -->
+			
+		<div data-role="panel" id="MoreOptions" data-display="overlay" data-position="left" data-theme="b" >			
+				<ul data-role="listview" id="MoreOptions-List">
+					<li data-role="list-divider">Cloud</li>		
+					<li><a href="#movies-main"	id="MyLocalMoviesBtn"						>My Movies</a></li>  					
+					<li><a href="#music-main"												>My Music</a></li>						
+					<li><a href="#MyAddons"		id="MyAddonsBtn"							>My Addons</a></li>					
+					<li><a href="#MyFav"													>My Favourites</a></li>
+					<li><a href="#MyCam"													>My SecurityCam </a></li>			
+					
+					<li data-role="list-divider">More Options</li>	
+					<li><a href="#PleasePlayThisLink"		 id="PleasePlayThisBtn"			>Play This Link </a></li>
+					<li><a href="#PagePuteBrowser"			 id="HD_MoviesBtn_IceMoviesHD"	>IceMovies HD Movies </a></li>
+					<li><a href="#system" data-rel="close"									>System</a></li>
+					
+					<li><a href="#home" data-rel="close"									>Close panel</a></li>
+				</ul>	
+			
+		</div><!-- /panel -->
+		
+		
+		
+		<div data-role="header">
+			<h1>Slim Media Center</h1>	
+			<a href="#MoreOptions"	data-icon="gear"     class="ui-btn-icon-left ui-btn-left" data-iconpos="notext" >Settings</a>
+			<a href="#remote"	    data-icon="tag"      class="ui-btn-icon-left ui-btn-right" >Remote</a>
+		</div><!-- /header -->
+		
+		
+		<div role="main" class="ui-content">	
+				<ul data-role="listview" data-inset="true" id="home-list">
+					<li data-role="list-divider" data-current-media="divider" style="display: none;">Currently playing</li>
+					<li data-current-media="info" style="display: none;">
+						<img data-current-media="thumbnail" src="themes/images/ajax-loader.gif" alt="Thumbnail" />						
+						<p> <span data-current-media="label" class="smallfont"></span>						
+						<span data-current-media="title"></span> </p>
+						<p data-current-media="player-time" class="smallerfont"></p>
+					</li>
+					<li><a href="#MyBigRemote"														>Big Remote</a></li>
+					<li data-role="list-divider">Live</li>					
+					<li><a href="#MyLocalChannels"													>Arabic Live TV	</a></li>					
+					<li><a href="#PagePuteBrowser"  id="More_LiveTV"								>More Live TV	</a></li>
+					
+					<li data-role="list-divider">TV Series</li>
+					<li><a href="#PagePuteBrowser" 	id="TV_Btn_Genesis_MostVoted"					>Top Voted		</a></li>					
+					<li><a href="#PagePuteBrowser" 	id="TV_Btn_Genesis_FullTvMenu"					>More Series	</a></li>
+					
+					<li data-role="list-divider">Movies	</li>
+					<li><a href="#PagePuteBrowser"   id="HD_Movies_Btn_GenesisLatestMovies" 		>Latest HD 		</a></li>
+					<li><a href="#PagePuteBrowser"	 id="HD_Movies_Btn_Genesis_Theaters"			>In Theaters	</a></li>    
+					<li><a href="#PagePuteBrowser"	 id="HD_Movies_Btn_GenesisBrowseFullMovieMenu"	>More Movies	</a></li> 
+					
+					<li data-role="list-divider">Radio	</li>					
+					<li><a href="#PagePuteBrowser"   id="RadioTunesList"							>Radio List		</a></li>
+					
+					
+				</ul>			
+		</div><!-- /content -->
+
+		
+		
+	</div><!-- /HomeScreen -->
+	
+	<!-- Start of PleasePlayThisLink_URL -->
+	<div data-role="page" id="PleasePlayThisLink"  >
+
+		<div data-role="header" >
+			<h1> Send To TV </h1>
+			<a href="#home" data-icon="home">Back</a>
+		</div><!-- /header -->
+
+		<div role="main" class="ui-content">
+				
+			<div data-role="controlgroup" data-type="horizontal" >		
+				<div  id="PleaseNoPaddingInsideA" >					
+				<input type="text" autocorrect="off" id="PleasePlayThisLink_URL" name="PleasePlayThisLink_URL" style="color:black"  data-clear-btn="true" >	
+				</div>	
+				<a href="#" data-remote-action="Input.PleaseTryThisLink" data-remote-params="PleaseTryThisLink" data-role="button" data-icon="check" >Play This Link</a>
+				<a href="#" data-remote-action="Input.PleasePlayYoutubeLink" data-remote-params="PleasePlayYoutubeLink" data-role="button" data-icon="check" >Play From Youtube </a>
+			</div>	
+			 
+		</div><!-- /content -->
+
+		
+	</div><!-- /page PleasePlayThisLink_URL -->
+	
+
+	<!-- Start of Arabic Tv -->
+	<div data-role="page" id="MyLocalChannels" class="MyLocalChannels my-arabic-channels" >
+			<div data-role="panel" id="MyLocalChannels_Remote" data-display="overlay" data-position="right" data-theme="b" >
+				<a href="#" data-remote-action="plugin://plugin.video.shahidmbcnet/?url=cRefresh&mode=17&name=Download+Files" data-remote-params="PleaseTryThis" data-role="button" data-icon="refresh" >Update</a>
+				<a href="#" data-remote-action="Input.Select" data-remote-params="" data-role="button" data-icon="grid" >Okay</a>	
+				<a href="#" data-remote-action="Player.Stop" data-remote-params="player" data-role="button" data-icon="stop" >Stop</a>					
+				<form id="VolumeSlider" class='dynamic-slider-form' ></form>				
+			</div><!-- /panel -->
+	
+		<div data-role="header" >
+			<h1> Arabic Live TV </h1>
+			<a href="#home" data-icon="home">Back</a>
+			<a href="#MyLocalChannels_Remote"	    data-icon="refresh"      class="ui-btn-icon-left ui-btn-right" >Update</a>			
+		</div><!-- /header -->	
+			
+			
+		<div role="main" class="ui-content">
+			 <ul id="MyLocalChannels-List" data-role="listview" class="ui-listview ">
+				<li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Syria&amp;mode=16&amp;name=Syria">
+				<img src="Channel_Icons/sat.jpg" alt="Syria" class="ui-li-thumb" class="ui-li-thumb"  />
+				Syria
+				</a>
+				</li>
+				<li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Syria+Drama&amp;mode=16&amp;name=Syria+Drama">
+				<img src="Channel_Icons/drama.jpg" alt="Syria Drama" class="ui-li-thumb"  />Syria Drama <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Syria+Talaqie&amp;mode=16&amp;name=Syria+Talaqie"> <img src="Channel_Icons/talaqie.png" alt="Syria Talaqie" class="ui-li-thumb"  />Syria Talaqie <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Alekhbaria+Syria&amp;mode=16&amp;name=Alekhbaria+Syria"> <img src="Channel_Icons/ekh_zpse8cea69a.png" alt="Alekhbaria Syria" class="ui-li-thumb"  />Alekhbaria Syria <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Al+Ikhbaria&amp;mode=16&amp;name=Al+Ikhbaria"> <img src="Channel_Icons/ekh_zpse8cea69a.png" alt="Al Ikhbaria" class="ui-li-thumb"  />Al Ikhbaria <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Sama+Syria&amp;mode=16&amp;name=Sama+Syria"> <img src="Channel_Icons/sry_zps64083ea1.png" alt="Sama Syria" class="ui-li-thumb"  />Sama Syria <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Syria+Aloula&amp;mode=16&amp;name=Syria+Aloula"> <img src="Channel_Icons/Aloula.jpg" alt="Syria Aloula" class="ui-li-thumb"  />Syria Aloula <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Syria+Nour&amp;mode=16&amp;name=Syria+Nour"> <img src="Channel_Icons/nour.jpg" alt="Syria Nour" class="ui-li-thumb"  />Syria Nour <br /></a> </li> 
+				<!-- MiniRemote As divider -->
+					<li data-role="list-divider" class="MyLocalChannels-List-RemoteDivider-Li"> 
+					<div class="MyLocalChannels-List-RemoteDivider"  data-type="horizontal">  
+					<form   class='dynamic-slider-form' >   </form>
+					</div> 
+					</li> 
+				<li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Royal+Edhak&amp;mode=16&amp;name=Royal+Edhak"> <img src="Channel_Icons/royal-live-mob-poster.png" alt="Royal Edhak" class="ui-li-thumb"  />Royal Edhak <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=NBN&amp;mode=16&amp;name=NBN"> <img src="Channel_Icons/nbn_zps0e94bd3c.png" alt="NBN" class="ui-li-thumb"  />NBN <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=OTV+Lebanon&amp;mode=16&amp;name=OTV+Lebanon"> <img src="Channel_Icons/otv_zps0b9f80de.png" alt="OTV Lebanon" class="ui-li-thumb"  />OTV Lebanon <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=LBC&amp;mode=16&amp;name=LBC"> <img src="Channel_Icons/lbc2_zps18770e5b.png" alt="LBC" class="ui-li-thumb"  />LBC <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Lbc+Europe&amp;mode=16&amp;name=Lbc+Europe"> <img src="Channel_Icons/lbce_zpsde05584f.png" alt="Lbc Europe" class="ui-li-thumb"  />Lbc Europe <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=MTV&amp;mode=16&amp;name=MTV"> <img src="Channel_Icons/mtv_zpsadd2693c.png" alt="MTV" class="ui-li-thumb"  />MTV <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Aljadeed&amp;mode=16&amp;name=Aljadeed"> <img src="Channel_Icons/jded_zpsdd69f978.png" alt="Aljadeed" class="ui-li-thumb"  />Aljadeed <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Tele+Liban&amp;mode=16&amp;name=Tele+Liban"> <img src="Channel_Icons/tellibn_zpsbc54e4de.png" alt="Tele Liban" class="ui-li-thumb"  />Tele Liban <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Alfady&amp;mode=16&amp;name=Alfady"> <img src="Channel_Icons/alfady_channel.png" alt="Alfady" class="ui-li-thumb"  />Alfady <br /></a> </li>
+					<li data-role="list-divider" class="MyLocalChannels-List-RemoteDivider-Li"> 
+					<div class="MyLocalChannels-List-RemoteDivider"  data-type="horizontal">					
+					<form   class='dynamic-slider-form' >   </form>
+					</div> 
+					</li> 
+				<li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=CBC&amp;mode=16&amp;name=CBC"> <img src="Channel_Icons/cbc_zps770dbcaf.png" alt="CBC" class="ui-li-thumb"  />CBC <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=CBC+2&amp;mode=16&amp;name=CBC+2"> <img src="Channel_Icons/cbc2_zps0e57a756.png" alt="CBC 2" class="ui-li-thumb"  />CBC 2 <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=CBC+Drama&amp;mode=16&amp;name=CBC+Drama"> <img src="Channel_Icons/cbcdrm_zps71aabc17.png" alt="CBC Drama" class="ui-li-thumb"  />CBC Drama <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Dubai&amp;mode=16&amp;name=Dubai"> <img src="Channel_Icons/f1ea6ed1853b861f7b20bc0d74beaaa6-2.png" alt="Dubai" class="ui-li-thumb"  />Dubai <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Alrai&amp;mode=16&amp;name=Alrai"> <img src="Channel_Icons/rai_zpsc466a183.png" alt="Alrai" class="ui-li-thumb"  />Alrai <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=MBC+1&amp;mode=16&amp;name=MBC+1"> <img src="Channel_Icons/mbc_zps04e0a9dc.png" alt="MBC 1" class="ui-li-thumb"  />MBC 1 <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=MBC+Drama&amp;mode=16&amp;name=MBC+Drama"> <img src="Channel_Icons/mbcdr_zps3d0101ab.png" alt="MBC Drama" class="ui-li-thumb"  />MBC Drama <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Panorama+film&amp;mode=16&amp;name=Panorama+film"> <img src="Channel_Icons/pnfi_zps0c601d9a.png" alt="Panorama film" class="ui-li-thumb"  />Panorama film <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Art+Aflam+1&amp;mode=16&amp;name=Art+Aflam+1"> <img src="Channel_Icons/flm1_zpsd562c6aa.png" alt="Art Aflam 1" class="ui-li-thumb"  />Art Aflam 1 <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Art+Aflam+2&amp;mode=16&amp;name=Art+Aflam+2"> <img src="Channel_Icons/artflem2_zps6f7d1ed6.png" alt="Art Aflam 2" class="ui-li-thumb"  />Art Aflam 2 <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=ART+Cinema&amp;mode=16&amp;name=ART+Cinema"> <img src="Channel_Icons/art_cinema.png" alt="ART Cinema" class="ui-li-thumb"  />ART Cinema <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=ART+Hekayat&amp;mode=16&amp;name=ART+Hekayat"> <img src="Channel_Icons/art_hekayat.png" alt="ART Hekayat" class="ui-li-thumb"  />ART Hekayat <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Melody+Drama&amp;mode=16&amp;name=Melody+Drama"> <img src="Channel_Icons/mdrm_zps62a0b4da.png" alt="Melody Drama" class="ui-li-thumb"  />Melody Drama <br /></a> </li>
+					<li data-role="list-divider" class="MyLocalChannels-List-RemoteDivider-Li">
+					<div class="MyLocalChannels-List-RemoteDivider"  data-type="horizontal">
+					<form   class='dynamic-slider-form' >   </form>
+					</div> 
+					</li>				
+				<li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Melody&amp;mode=16&amp;name=Melody"> <img src="Channel_Icons/mldi_zpse1b15543.png" alt="Melody" class="ui-li-thumb"  />Melody <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Melody+Hits&amp;mode=16&amp;name=Melody+Hits"> <img src="Channel_Icons/hits_zps0fca1de1.png" alt="Melody Hits" class="ui-li-thumb"  />Melody Hits <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Melody+Classic&amp;mode=16&amp;name=Melody+Classic"> <img src="Channel_Icons/mldclsic_zpseeb97765.png" alt="Melody Classic" class="ui-li-thumb"  />Melody Classic <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Melody+Arabia&amp;mode=16&amp;name=Melody+Arabia"> <img src="Channel_Icons/mre_zpse300898a.png" alt="Melody Arabia" class="ui-li-thumb"  />Melody Arabia <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=MTV+Arabia&amp;mode=16&amp;name=MTV+Arabia"> <img src="Channel_Icons/american-mtv-and-arabia-the-level-censorship-62096.jpg" alt="MTV Arabia" class="ui-li-thumb"  />MTV Arabia <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8"> <img src="Channel_Icons/c0c2c0ac8b62409fad03b5ade06b8511-hd.jpg" alt="VEVO TV US" class="ui-li-thumb"  />VEVO TV US <br /></a> </li>
+					<li data-role="list-divider" class="MyLocalChannels-List-RemoteDivider-Li" > 
+					<div class="MyLocalChannels-List-RemoteDivider"  data-type="horizontal">
+					 <form   class='dynamic-slider-form' >   </form>
+					</div>
+					</li>
+				<li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Al+mayaden&amp;mode=16&amp;name=Al+mayaden"> <img src="Channel_Icons/mydeen_zpsa9e1e0a1.png" alt="Al mayaden" class="ui-li-thumb"  />Al mayaden <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Russia+Alyaum&amp;mode=16&amp;name=Russia+Alyaum"> <img src="Channel_Icons/rt_zpsb0ef0d97.png" alt="Russia Alyaum" class="ui-li-thumb"  />Russia Alyaum <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=BBC+Arabic&amp;mode=16&amp;name=BBC+Arabic"> <img src="Channel_Icons/bbc_zpsf5114c48.png" alt="BBC Arabic" class="ui-li-thumb"  />BBC Arabic <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Al+Iraqiya+Documentary&amp;mode=16&amp;name=Al+Iraqiya+Documentary"> <img src="Channel_Icons/al_iraqya_documentary.png" alt="Al Iraqiya Documentary" class="ui-li-thumb"  />Al Iraqiya Documentary <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Al-hurra+Iraq&amp;mode=16&amp;name=Al-hurra+Iraq"> <img src="Channel_Icons/hurr_zpsb88e20dc.png" alt="Al-hurra Iraq" class="ui-li-thumb"  />Al-hurra Iraq <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Alan&amp;mode=16&amp;name=Alan"> <img src="Channel_Icons/eleen_zps1027da55.png" alt="Alan" class="ui-li-thumb"  />Alan <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Alarabiya&amp;mode=16&amp;name=Alarabiya"> <img src="Channel_Icons/erbyeh_zpsf7251818.png" alt="Alarabiya" class="ui-li-thumb"  />Alarabiya <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Alarabiya+Ahdas&amp;mode=16&amp;name=Alarabiya+Ahdas"> <img src="Channel_Icons/hdth_zps3dbc5492.png" alt="Alarabiya Ahdas" class="ui-li-thumb"  />Alarabiya Ahdas <br /></a> </li>
+					<li data-role="list-divider" class="MyLocalChannels-List-RemoteDivider-Li"> 
+					<div class="MyLocalChannels-List-RemoteDivider"  data-type="horizontal"> 
+					<form   class='dynamic-slider-form' >   </form>
+					</div>
+					</li>
+				<li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Infinity&amp;mode=16&amp;name=Infinity"> <img src="Channel_Icons/infin_zps1f5bc8af.png" alt="Infinity" class="ui-li-thumb"  />Infinity <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Fox&amp;mode=16&amp;name=Fox"> <img src="Channel_Icons/fox_zpsf9946b49.png" alt="Fox" class="ui-li-thumb"  />Fox <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Fox+Movies&amp;mode=16&amp;name=Fox+Movies"> <img src="Channel_Icons/fxmvi_zps2326552c.png" alt="Fox Movies" class="ui-li-thumb"  />Fox Movies <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Dubai+One&amp;mode=16&amp;name=Dubai+One"> <img src="Channel_Icons/db1_zps792175e5.png" alt="Dubai One" class="ui-li-thumb"  />Dubai One <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=Fx+Arabia&amp;mode=16&amp;name=Fx+Arabia"> <img src="Channel_Icons/fx_zpsa4e3fa74.png" alt="Fx Arabia" class="ui-li-thumb"  />Fx Arabia <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=MBC+2&amp;mode=16&amp;name=MBC+2"> <img src="Channel_Icons/mbc2_zps4c29c495.png" alt="MBC 2" class="ui-li-thumb"  />MBC 2 <br /></a> </li><li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=MBC+Action&amp;mode=16&amp;name=MBC+Action"> <img src="Channel_Icons/mbcction_zpsd8efdff9.png" alt="MBC Action" class="ui-li-thumb"  />MBC Action <br /></a> </li> <li> <a href="#" data-channel-params="PleasePlayFromShahed" data-channel-action="plugin://plugin.video.shahidmbcnet/?url=MBC+4&amp;mode=16&amp;name=MBC+4"> <img src="Channel_Icons/bc4_zpse0038854.png" alt="MBC 4" class="ui-li-thumb"  />MBC 4 <br /></a> </li> 
+			 </ul>
+		</div><!-- /content -->	
+	</div><!-- /page Arabic TV -->	
+	
+	<!-- Start of page Local movies -->
+	<div data-role="page" id="movies-main">
+			<div data-role="header" >
+				<h1>My Movies</h1>
+				<a href="#home" data-icon="home">Back</a>
+			</div>
+			<div role="main" class="ui-content">			
+				<ul id="moviemainlist" data-role="listview" class="ui-listview">
+				</ul>
+			</div>			
+	</div>
+	
+	<div data-role="page" id="movies-details">
+	<div data-role="header" >
+	<h1> MyAddons </h1>	
+	<a href="#movies-main" data-icon="home">Home</a>
+	<a href="#movies-main" data-icon="arrow-l">Back</a>
+	</div><!-- /header -->			
+			<div role="main" class="ui-content">
+				<h3 id="movie-title"></h3>				
+				<ul class="ui-listview" data-role="listview" id="movie-details-list"></ul>
+			</div>			
+	</div>
+	<!-- /page movies -->
+	
+	<!-- Start of List of Addons -->
+	<div data-role="page" id="MyAddons" class='MyAddons'>
+		<div data-role="header" >
+			<h1> MyAddons </h1>
+			<a href="#home" data-icon="arrow-l">Back</a>
+		</div><!-- /header -->
+		<!-- /content AjaxLoaded -->	
+		<div role="main" class="ui-content">
+		<ul id="MyAddons-List" data-role="listview" class="ui-listview">			 
+		</ul>
+		</div><!-- /content AjaxLoaded -->
+	</div>
+	<!-- /page List Addons -->
+	
+	
+	
+	<!-- Start of browse of Addons -->
+	<div data-role="page" id="BrowseMyAddon">
+		<div data-role="header" >
+			<h1> BrowseMyAddon </h1>
+			<a href="#home" data-icon="home">Back</a>
+		</div><!-- /header -->
+		<!-- /content AjaxLoaded -->	
+		<div role="main" class="ui-content">			 
+			 <ul id="BrowseMyAddon-List" data-role="listview" class="ui-listview">			 
+			 </ul>
+		</div><!-- /content AjaxLoaded -->		
+	</div><!-- /page browse of Addons  -->
+	
+	
+	
+	
+	<!---- Start of  -->
+	<div data-role="page" id="PagePuteBrowser" class="my-page">
+			<div data-role="panel" id="PagePuteBrowserRemote" data-display="overlay" data-position="right" data-theme="b" >
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Input.Back" data-remote-params="" data-role="button" data-icon="back" data-iconpos="notext">Back</a>
+					<a href="#" data-remote-action="Input.Up" data-remote-params="" data-role="button" data-icon="arrow-u" data-iconpos="notext">Up</a>
+					<a href="#" data-remote-action="input.ContextMenu" data-remote-params="" data-role="button" data-icon="gear" data-iconpos="notext">Menu</a>
+				</div>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Input.Left" data-remote-params="" data-role="button" data-icon="arrow-l" data-iconpos="notext">Left</a>
+					<a href="#" data-remote-action="Input.Select" data-remote-params="" data-role="button" data-icon="grid" data-iconpos="notext" >Okay</a>
+					<a href="#" data-remote-action="Input.Right" data-remote-params="" data-role="button" data-icon="arrow-r" data-iconpos="notext">Right</a>
+				</div>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Player.PlayPause" data-remote-params="player" data-role="button" data-icon="playpause" data-iconpos="notext">Play/Pause</a>
+					<a href="#" data-remote-action="Input.Down" data-remote-params="" data-role="button" data-icon="arrow-d" data-iconpos="notext">Down</a>
+					<a href="#" data-remote-action="Player.Stop" data-remote-params="player" data-role="button" data-icon="stop" data-iconpos="notext">Stop</a>
+				</div>
+				<div data-role="controlgroup" data-type="horizontal">
+					<input id="VolumeActuel" type="hidden" value="1" /> 
+					<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeDown" data-role="button" data-icon="minus" data-iconpos="notext">-</a>
+					<a href="#" data-remote-action="Input.ShowOSD" data-remote-params="" data-role="button" data-icon="info" data-iconpos="notext"> Show OSD</a>
+					<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeUp" data-role="button" data-icon="plus" data-iconpos="notext">+</a>
+				</div>
+				<form id="VolumeSlider" class='dynamic-slider-form' >
+				</form>
+				<div data-role="controlgroup" data-type="horizontal">
+					<input type="text"  autocorrect="off" id="TextToSendPP" style="color:black" data-wrapper-class="TextToSend" >	
+					<a href="#" data-remote-action="Input.SendText" data-remote-params="TextInputPP" data-role="button" data-icon="check" data-iconpos="notext">SendText</a>
+				</div>
+			</div><!-- /panel -->
+	
+
+		<div data-role="header" id="PagePuteBrowser-Header">
+		<h1 id="PagePuteBrowser-Title" > Slim Media Center  </h1>
+		<a href="#home" data-role="button" data-icon="home" >Home</a>
+		<a href="#PagePuteBrowserRemote" data-icon="tag" class="ui-btn-icon-left ui-btn-right">Remote</a>
+		<div data-role="navbar" data-iconpos="left">
+		<ul>
+		<li><a href="#" id="TogglePagePuteView" data-icon="bullets"   >Change View</a></li>
+		</ul>
+		</div><!-- /navbar -->
+		</div><!-- /header -->
+		<div role="main" class="ui-content">
+		<form class="ui-filterable">
+		<input id="filter-input-PagePuteBrowser" data-type="search">
+		</form>
+		<ul id="PagePuteBrowser-List"  data-inset="true" data-role="listview" class="ui-listview" data-filter="true" data-input="#filter-input-PagePuteBrowser"></ul>
+		<div data-role="collapsible"   style="display:none;" id="PagePuteBrowser-List-Other-HiddenCollapsible">
+		<h4>More Sources</h4>
+		<ul id="PagePuteBrowser-List-Other"  data-inset="true" data-content-theme="false" data-role="listview"  class="ui-listview">
+		</ul>
+		</div>
+		</div><!-- /content AjaxLoaded -->
+		<div data-role="footer">
+					<a href="#home" id="PagePuteBrowser-Header-BtnBack" data-icon="arrow-l"  class="GenesisBtn "  data-addon-type="Houhou" 	data-addon-path-GenesisPath="houhou" data-iconpos="notext" >Back</a>							
+		</div><!-- /footer -->
+		<div data-role="popup" id="ShowMySourceLink" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+		    <h3>Show My Source Link</h3>
+			<p>Your Link : </p>		   
+		    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+		</div>
+	</div><!-- /page --> 
+	
+	<!-- Systeme --> 
+	<div data-role="page"  id="system">
+			<div data-role="header" >
+				<h3> SYSTEM </h3>				
+				<a href="#home" data-icon="home">Home</a>
+			</div>
+			<div role="main" class="ui-content">
+				<ul data-role="listview">
+					<li data-role="list-divider">Scan New Media</li>
+					<li><a id="ScanVideoLib" >Scan video library</a></li>	
+					<li><a id="ScanAudioLib" >Scan audio library</a></li>
+					<li data-role="list-divider">Power</li>
+					<li><a href="#" data-remote-action="System.Shutdown" data-remote-params="" data-role="button" data-icon="power" >Shutdown Now</a></li>				 
+					<li><a href="#" data-remote-action="System.Reboot" data-remote-params="" data-role="button" data-icon="power" >Reboot Now</a></li>					
+										
+				</ul>
+			</div>
+	</div>
+	<!-- /Systeme --> 
+	
+	
+	
+	
+	
+	
+	<!-- Start of page MyBigRemote -->
+	<div data-role="page" id="MyBigRemote">
+			<div data-role="header" >
+				<h1>My Big Remote</h1>
+				<a href="#home" data-icon="home">Back</a>
+			</div>
+			<div role="main" class="ui-content">
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Input.Back" data-remote-params="" 			data-role="button" data-icon="back"		 data-iconpos="notext">Back</a>
+					<a href="#" data-remote-action="Input.Up" data-remote-params="" 			data-role="button" data-icon="arrow-u"	 data-iconpos="notext">Up</a>
+					<a href="#" data-remote-action="input.ContextMenu" data-remote-params="" 	data-role="button" data-icon="gear" 	 data-iconpos="notext">Menu</a>					
+					
+				</div>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Input.Left" 			data-remote-params="" data-role="button" data-icon="arrow-l" 	data-iconpos="notext">Left</a>
+					<a href="#" data-remote-action="Input.Select" 			data-remote-params="" data-role="button" data-icon="grid" 		data-iconpos="notext" >Okay</a>
+					<a href="#" data-remote-action="Input.Right" 			data-remote-params="" data-role="button" data-icon="arrow-r" 	data-iconpos="notext">Right</a>
+				</div>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="#" data-remote-action="Player.PlayPause" data-remote-params="player" data-role="button" data-icon="playpause" data-iconpos="notext">Play/Pause</a>				
+					<a href="#" data-remote-action="Input.Down" data-remote-params="" data-role="button" data-icon="arrow-d" data-iconpos="notext">Down</a>
+					<a href="#" data-remote-action="Player.Stop" data-remote-params="player" data-role="button" data-icon="stop" data-iconpos="notext">Stop</a>
+				</div>					
+				<div data-role="controlgroup" data-type="horizontal">				
+					<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeDown" data-role="button" data-icon="minus" data-iconpos="notext">-</a>	
+					<a href="#" data-remote-action="Input.ShowOSD" data-remote-params="" data-role="button" data-icon="info" data-iconpos="notext"> Show OSD</a>
+					<a href="#" data-remote-action="Application.SetVolume" data-remote-params="VolumeChangeUp" data-role="button" data-icon="plus" data-iconpos="notext">+</a>				
+				</div>
+				<form class='dynamic-slider-form' ></form>				
+										
+				
+				
+			</div>			
+	</div>
+	<!-- Start of page MyBigRemote -->
+</body>
+</html>
